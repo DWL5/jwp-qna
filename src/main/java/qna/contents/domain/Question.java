@@ -1,17 +1,30 @@
 package qna.contents.domain;
 
+import qna.common.UpdatableEntity;
 import qna.user.domain.User;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Question extends ContentsEntity{
+public class Question extends UpdatableEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(nullable = false, length = 100)
     private String title;
     @ManyToOne
     private User writer;
+
+    @Lob
+    private String contents;
+    @Column(nullable = false)
+    private boolean deleted = false;
+
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answers;
 
     protected Question() {
     }
@@ -36,6 +49,12 @@ public class Question extends ContentsEntity{
     }
 
     public void addAnswer(Answer answer) {
+
+        if (answers == null) {
+            answers = new ArrayList<>();
+        }
+
+        answers.add(answer);
         answer.toQuestion(this);
     }
 
@@ -45,6 +64,14 @@ public class Question extends ContentsEntity{
 
     public User getWriter() {
         return writer;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public boolean isDeleted() {
@@ -60,9 +87,5 @@ public class Question extends ContentsEntity{
                 ", writerId=" + writer.getId() +
                 ", deleted=" + deleted +
                 '}';
-    }
-
-    public void delete() {
-        this.deleted = true;
     }
 }

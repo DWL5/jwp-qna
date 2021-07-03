@@ -2,16 +2,22 @@ package qna.contents.domain;
 
 import qna.NotFoundException;
 import qna.UnAuthorizedException;
+import qna.common.UpdatableEntity;
 import qna.user.domain.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Answer extends ContentsEntity{
-    @OneToOne
+public class Answer extends UpdatableEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Lob
+    private String contents;
+    @Column(nullable = false)
+    private boolean deleted = false;
+    @ManyToOne
     private Question question;
     @ManyToOne
     private User writer;
@@ -44,6 +50,10 @@ public class Answer extends ContentsEntity{
     }
 
     public void toQuestion(Question question) {
+        if (this.question != null) {
+            this.question.getAnswers().remove(this);
+        }
+
         this.question = question;
     }
 
