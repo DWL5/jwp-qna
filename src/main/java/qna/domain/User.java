@@ -20,7 +20,7 @@ public class User {
     private String name;
     @Column(nullable = false, length = 20)
     private String password;
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    private LocalDateTime updatedAt;
     @Column(nullable = false, length = 20)
     private String userId;
 
