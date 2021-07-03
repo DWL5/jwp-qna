@@ -24,7 +24,7 @@ class AnswerRepositoryTest {
         userRepository.save(UserTest.JAVAJIGI);
         final Answer saved = answerRepository.save(AnswerTest.A1);
         //when
-        saved.setDeleted(true);
+        saved.delete();
         //then
         final Answer found = answerRepository.findById(saved.getId()).get();
         Assertions.assertEquals(found.isDeleted(), true);
