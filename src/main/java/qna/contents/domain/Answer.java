@@ -50,10 +50,6 @@ public class Answer extends UpdatableEntity {
     }
 
     public void toQuestion(Question question) {
-        if (this.question != null) {
-            this.question.getAnswers().remove(this);
-        }
-
         this.question = question;
     }
 
@@ -69,8 +65,8 @@ public class Answer extends UpdatableEntity {
         return deleted;
     }
 
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
+    public void delete() {
+        this.deleted = true;
     }
 
     @Override
