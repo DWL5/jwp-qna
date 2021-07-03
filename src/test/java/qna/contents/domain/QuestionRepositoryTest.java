@@ -47,10 +47,9 @@ class QuestionRepositoryTest {
         final Answer savedAnswer = answerRepository.save(answer);
         //when
         savedQuestion.addAnswer(savedAnswer);
-        //Assertions.assertEquals(1, savedQuestion.getAnswers().size());
         //then
         final Question found = questionRepository.findById(savedQuestion.getId()).get();
-        //Assertions.assertEquals(1, found.getAnswers().size());
+        Assertions.assertEquals(1, found.getAnswers().size());
     }
 
     @DisplayName("질문을 삭제한다.")
