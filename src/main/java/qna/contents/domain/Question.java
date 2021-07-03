@@ -84,7 +84,7 @@ public class Question extends UpdatableEntity {
         this.deleted = true;
         List<DeleteHistory> deleteHistories = new ArrayList<>();
         deleteHistories.add(new DeleteHistory(ContentType.QUESTION, id, writer, LocalDateTime.now()));
-        
+
         for (Answer answer : answers) {
             answer.delete();
             deleteHistories.add(new DeleteHistory(ContentType.ANSWER, answer.getId(), answer.getWriter(), LocalDateTime.now()));
