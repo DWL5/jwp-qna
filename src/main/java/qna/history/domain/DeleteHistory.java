@@ -18,7 +18,7 @@ public class DeleteHistory {
     @ManyToOne
     private User deleteBy;
 
-    public DeleteHistory() {
+    protected DeleteHistory() {
     }
 
     public DeleteHistory(ContentType contentType, Long contentId, User user, LocalDateTime createDate) {

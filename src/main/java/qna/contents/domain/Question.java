@@ -13,7 +13,7 @@ public class Question extends ContentsEntity{
     @ManyToOne
     private User writer;
 
-    public Question() {
+    protected Question() {
     }
 
     public Question(String title, String contents) {

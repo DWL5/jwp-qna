@@ -23,7 +23,7 @@ public class User extends UpdatableEntity {
     private String userId;
 
 
-    public User() {
+    protected User() {
     }
 
     public User(String userId, String password, String name, String email) {
