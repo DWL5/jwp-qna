@@ -5,13 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import qna.domain.AnswerTest;
-import qna.domain.UserTest;
+import qna.user.domain.UserTest;
 import qna.user.domain.UserRepository;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class AnswerRepositoryTest {
@@ -33,5 +28,10 @@ class AnswerRepositoryTest {
         //then
         final Answer found = answerRepository.findById(saved.getId()).get();
         Assertions.assertEquals(found.isDeleted(), true);
+    }
+
+    public static class AnswerTest {
+        public static final Answer A1 = new Answer(UserTest.JAVAJIGI, QuestionTest.Q1, "Answers Contents1");
+        public static final Answer A2 = new Answer(UserTest.SANJIGI, QuestionTest.Q1, "Answers Contents2");
     }
 }

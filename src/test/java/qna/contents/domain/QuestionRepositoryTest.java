@@ -5,9 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import qna.domain.AnswerTest;
-import qna.domain.QuestionTest;
-import qna.domain.UserTest;
+import qna.user.domain.UserTest;
 import qna.user.domain.UserRepository;
 
 @DataJpaTest
@@ -39,7 +37,7 @@ class QuestionRepositoryTest {
         //given
         userRepository.save(UserTest.JAVAJIGI);
         final Question savedQuestion = questionRepository.save(QuestionTest.Q1);
-        final Answer savedAnswer = answerRepository.save(AnswerTest.A1);
+        final Answer savedAnswer = answerRepository.save(AnswerRepositoryTest.AnswerTest.A1);
         //when
         savedQuestion.addAnswer(savedAnswer);
         //then

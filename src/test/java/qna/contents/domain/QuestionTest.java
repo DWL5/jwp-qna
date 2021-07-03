@@ -1,6 +1,6 @@
-package qna.domain;
+package qna.contents.domain;
 
-import qna.contents.domain.Question;
+import qna.user.domain.UserTest;
 
 public class QuestionTest {
     public static final Question Q1 = new Question("title1", "contents1").writeBy(UserTest.JAVAJIGI);
