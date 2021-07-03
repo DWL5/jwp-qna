@@ -81,10 +81,10 @@ public class Question extends UpdatableEntity {
 
     public List<DeleteHistory> delete() throws CannotDeleteException {
         validateAnswers();
-        System.out.println("gasdj'lkasgdjklsadgjk;sgzdj;ksgzrj;Osgarl;':" + answers.size());
         this.deleted = true;
         List<DeleteHistory> deleteHistories = new ArrayList<>();
         deleteHistories.add(new DeleteHistory(ContentType.QUESTION, id, writer, LocalDateTime.now()));
+        
         for (Answer answer : answers) {
             answer.delete();
             deleteHistories.add(new DeleteHistory(ContentType.ANSWER, answer.getId(), answer.getWriter(), LocalDateTime.now()));
@@ -95,12 +95,15 @@ public class Question extends UpdatableEntity {
 
     private void validateAnswers() throws CannotDeleteException {
         for (Answer answer : answers) {
-            if (!answer.isOwner(writer)) {
-                throw new CannotDeleteException("다른 사람이 쓴 답변이 있어 삭제할 수 없습니다.");
-            }
+            validateAnswer(answer);
         }
     }
 
+    private void validateAnswer(Answer answer) throws CannotDeleteException {
+        if (!answer.isOwner(writer)) {
+            throw new CannotDeleteException("다른 사람이 쓴 답변이 있어 삭제할 수 없습니다.");
+        }
+    }
 
     @Override
     public String toString() {
