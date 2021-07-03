@@ -67,10 +67,6 @@ public class Question extends UpdatableEntity {
         return writer;
     }
 
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
     public boolean isDeleted() {
         return deleted;
     }
