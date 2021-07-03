@@ -10,18 +10,9 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Answer {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Lob
-    private String contents;
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-    @Column(nullable = false)
-    private boolean deleted = false;
+public class Answer extends ContentsEntity{
     @OneToOne
     private Question question;
-    private Date updatedAt;
     @ManyToOne
     private User writer;
 

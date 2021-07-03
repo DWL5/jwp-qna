@@ -2,22 +2,14 @@ package qna.contents.domain;
 
 import qna.user.domain.User;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Question {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Lob
-    private String contents;
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-    @Column(nullable = false)
-    private boolean deleted = false;
+public class Question extends ContentsEntity{
     @Column(nullable = false, length = 100)
     private String title;
-    private LocalDateTime updatedAt;
     @ManyToOne
     private User writer;
 

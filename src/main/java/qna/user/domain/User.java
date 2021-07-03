@@ -1,26 +1,24 @@
 package qna.user.domain;
 
 import qna.UnAuthorizedException;
+import qna.common.UpdatableEntity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class User {
+public class User extends UpdatableEntity {
     public static final GuestUser GUEST_USER = new GuestUser();
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
     @Column(length = 50)
     private String email;
     @Column(nullable = false, length = 20)
     private String name;
     @Column(nullable = false, length = 20)
     private String password;
-    private LocalDateTime updatedAt;
     @Column(nullable = false, length = 20)
     private String userId;
 
