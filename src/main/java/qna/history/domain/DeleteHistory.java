@@ -9,7 +9,8 @@ import java.util.Objects;
 
 @Entity
 public class DeleteHistory {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long contentId;
     @Enumerated(EnumType.STRING)
