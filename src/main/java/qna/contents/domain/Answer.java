@@ -1,7 +1,8 @@
-package qna.domain;
+package qna.contents.domain;
 
 import qna.NotFoundException;
 import qna.UnAuthorizedException;
+import qna.user.domain.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -62,7 +63,7 @@ public class Answer {
     public User getWriter() {
         return writer;
     }
-    
+
     public boolean isDeleted() {
         return deleted;
     }

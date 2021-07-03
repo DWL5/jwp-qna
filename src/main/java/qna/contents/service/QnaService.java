@@ -1,4 +1,4 @@
-package qna.service;
+package qna.contents.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import qna.CannotDeleteException;
 import qna.NotFoundException;
-import qna.domain.*;
+import qna.contents.domain.*;
+import qna.history.domain.DeleteHistory;
+import qna.history.service.DeleteHistoryService;
+import qna.user.domain.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
