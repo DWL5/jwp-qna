@@ -49,13 +49,8 @@ public class Question {
         return id;
     }
 
-
     public User getWriter() {
         return writer;
-    }
-
-    public void setWriter(User writer) {
-        this.writer = writer;
     }
 
     public boolean isDeleted() {
